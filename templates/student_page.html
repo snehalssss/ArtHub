@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Student!</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // jQuery code to toggle visibility
+            $('.know-more-btn').click(function () {
+                $(this).next('.know-more').toggle();
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: Trebuchet MS, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgba(255, 255, 255, 2.5);
+        }
+
+        nav {
+            background-color: #29ADB2;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        h1 {
+            margin: 20px;
+            font-size: 24px;
+            color: #29ADB2;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #29ADB2;
+            color: white;
+        }
+
+        .know-more {
+            display: none;
+        }
+
+        .apply-button {
+            background-color: #29ADB2;
+            color: white;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .apply-button:hover {
+            background-color: white;
+            color: #29ADB2;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Apply</a></li>
+            <li><a href="#">Query</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <h1>Welcome, student!</h1>
+
+    <h2>Available Events</h2>
+    <ul>
+        {% for event in events %}
+            <li>
+                Event: {{ event.event_name }}<br>
+                Organizer: {{ event.organizer }}<br>
+                Type: {{ event.event_type }}<br>
+                Date: {{ event.event_date }}<br>
+                Time: {{ event.start_time }} - {{ event.end_time }}<br>
+                Description: {{ event.event_description }}<br>
+                <a href="{{ url_for('apply_event', event_name=event.event_name, username='student123') }}">Apply</a>
+            </li>
+            <br>
+        {% endfor %}
+    </ul>
+  
+
+</body>
+</html>
+

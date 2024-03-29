@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        html{
+          margin-top: 0;
+          padding:0;
+        }
+        img{
+           height: 10vh;
+           width: 10vh;
+           
+           float: left;
+           margin-left: 3px;
+        }
+        nav {
+           margin-top: 0;
+           padding: 0.5px;
+           background-size: cover;
+           background-color: white;
+           height: 6vh;
+           width: 100%;
+        }
+        h2 {
+            margin-bottom: 50px;
+            font-size: 30px;
+            font-family: Trebuchet MS, sans-serif;
+            color: #29ADB2;
+        }
+        body {
+            font-family: Trebuchet MS, sans-serif;
+            margin: 0;
+    padding: 0;
+            background-image: url('/static/folder-surrounded-by-painting-material.jpg');
+            
+  /* Set the background color with reduced opacity */
+  background-color: rgba(255, 255, 255, 2.5);
+            background-size: cover;
+         
+        }
+
+        form {
+            font-family: Trebuchet MS, sans-serif;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 340px;
+            width: 300px;
+            margin-left: 750px;
+            text-align: center;
+          
+            align-items: center;
+            justify-content: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            text-align: center;
+            width: 90%;
+            padding: 13px;
+            margin: 8px 0;
+            margin: 20px auto;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 15px;
+        }
+
+        button {
+            background-color: #29ADB2;
+            color: white;
+            padding: 10px 60px;
+            width: 300px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin: 20px auto; /* Center the button horizontally */
+        }
+
+        button:hover {
+            background-color: white;
+            color: #80BCBD;
+        }
+
+        p {
+            color: red;
+        }
+
+        a {
+            display: block;
+            margin-top: 10px;
+            color: #4CB9E7;
+            text-decoration: none;
+        }
+        
+    </style>
+</head>
+       
+<body>
+     <nav>
+         <img src = "/static/cropped-Screenshot from 2024-03-02 14-38-15.png">
+         
+     </nav>
+     <form method="post" action="{{ url_for('login') }}">
+        
+        <h2>LOG IN</h2>
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+        <label for="username_or_email">Username or Email:</label>
+        <input type="text" id="username_or_email" name="username_or_email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">LOGIN</button>
+
+        <a href="/register">New User? Register Here</a>
+        <a href="/register">Forgot Password</a>
+    </form>
+</body>
+</html>
+

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Artwork</title>
+</head>
+<body>
+    <h2>Upload Artwork for {{ event_name }}</h2>
+    <form action="{{ url_for('submit_artwork') }}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="event_name" value="{{ event_name }}">
+        <input type="hidden" name="username" value="{{ username }}">
+        <label for="artwork">Artwork:</label>
+        <input type="file" name="artwork" accept=".png, .jpg, .jpeg" required>
+        <label for="description">Description:</label>
+        <textarea name="description" rows="4" required></textarea>
+        <!-- Add the username input -->
+        <input type="hidden" name="username" value="{{ username }}">
+        <button type="submit">Submit Artwork</button>
+    </form>
+</body>
+</html>
+

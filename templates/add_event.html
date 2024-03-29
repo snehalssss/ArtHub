@@ -1,0 +1,28 @@
+<!-- add_event.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Event</title>
+</head>
+<body>
+    <h1>Add Event</h1>
+    <form method="POST" action="{{ url_for('add_event') }}">
+        <label for="organization">Organization Name:</label>
+        <input type="text" name="organization" required><br>
+
+        <label for="date">Date:</label>
+        <input type="date" name="date" required><br>
+
+        <label for="time">Time:</label>
+        <input type="time" name="time" required><br>
+
+        <label for="deadline">Deadline:</label>
+        <input type="datetime-local" name="deadline" required><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+

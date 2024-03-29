@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Teacher!</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        nav {
+            background-color: #29ADB2;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #29ADB2;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1E7E87;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Apply</a></li>
+            <li><a href="#">Query</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <h1>Welcome, teacher!</h1>
+    
+    <h2>Add Event</h2>
+    <form method="post" action="{{ url_for('add_event') }}">
+        <label for="event_name">Event Name:</label>
+        <input type="text" id="event_name" name="event_name" required>
+
+        <label for="event_type">Event Type:</label>
+        <select id="event_type" name="event_type" required>
+            <option value="online">Online</option>
+            <option value="offline">Offline</option>
+        </select>
+
+        <label for="event_date">Event Date:</label>
+        <input type="date" id="event_date" name="event_date" required>
+
+        <label for="start_time">Start Time:</label>
+        <input type="time" id="start_time" name="start_time" required>
+
+        <label for="end_time">End Time:</label>
+        <input type="time" id="end_time" name="end_time" required>
+
+        <label for="event_description">Event Description:</label>
+        <textarea id="event_description" name="event_description" rows="4" cols="50" required></textarea>
+
+        <label for="organizer">Organizer:</label>
+        <input type="text" id="organizer" name="organizer" required>
+
+        <button type="submit">Add Event</button>
+    </form>
+</body>
+</html>
+
