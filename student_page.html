@@ -1163,22 +1163,32 @@
     </h1>
     <h2 class="row__sub">What fits your creativity the best?</h2>
   </div>
-  <h2>Available Events</h2>
+  <h1>Available Events</h1>
     <table border="1">
         <thead>
             <tr>
+                <th>Event ID</th>
                 <th>Event Name</th>
                 <th>Event Type</th>
                 <th>Event Date</th>
                 <th>Start Time</th>
                 <th>End Time</th>
                 <th>Event Description</th>
-                <th>Event Key</th> <!-- New column for displaying event key -->
             </tr>
         </thead>
-        <tbody id="eventsTable">
-          <!-- Event details will be dynamically added here -->
-      </tbody>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event[0] }}</td>
+                <td>{{ event[1] }}</td>
+                <td>{{ event[2] }}</td>
+                <td>{{ event[3] }}</td>
+                <td>{{ event[4] }}</td>
+                <td>{{ event[5] }}</td>
+                <td>{{ event[6] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
   
   </section>
