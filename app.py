@@ -262,32 +262,6 @@ def student_page():
         # Handle any errors
         return "An error occurred while fetching events: {}".format(str(e))
 
-@app.route('/fetch_events')
-def fetch_events():
-    try:
-        # Fetch events from the database
-        cursor.execute("SELECT id, event_name, event_type, event_date, start_time, end_time, event_description FROM events")
-        events = cursor.fetchall()
-
-        # Convert events to a list of dictionaries
-        event_dicts = []
-        for event in events:
-            event_dict = {
-                'id': event[0],
-                'event_name': event[1],
-                'event_type': event[2],
-                'event_date': event[3],
-                'start_time': event[4],
-                'end_time': event[5],
-                'event_description': event[6]
-            }
-            event_dicts.append(event_dict)
-
-        # Return events as JSON
-        return jsonify(event_dicts)
-    except Exception as e:
-        # Handle any errors
-        return jsonify({'error': str(e)})
 
 @app.route('/apply_event/<event_name>')
 def apply_event(event_name):
