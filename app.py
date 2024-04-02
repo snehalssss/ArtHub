@@ -77,6 +77,17 @@ def create_tables():
         FOREIGN KEY (query_id) REFERENCES queries(id)
     )
     """)
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS winners (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    user_name VARCHAR(255) NOT NULL,
+    event_name VARCHAR(255) NOT NULL,
+    event_key VARCHAR(255) NOT NULL,
+    rank_value INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+)
+""")
 
 create_tables()
 ############
