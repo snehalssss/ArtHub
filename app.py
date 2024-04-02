@@ -357,6 +357,41 @@ def view_artwork(event_name, filename):
     else:
         # If the file does not exist, return a 404 error
         abort(404)
+        
+@app.route('/submit_winners', methods=['POST'])
+def submit_winners():
+    if request.method == 'POST':
+        event_key = request.form.get('event_key')
+        event_name = request.form.get('event_name')
+        if event_key and event_name:
+            # Get the selected winners and their ranks from the form data
+            winners = []
+            for i in range(1, 4):  # Assuming there are 3 winners to be ranked
+                user_id = request.form.get(f'winner_id_{i}')
+                rank_value = request.form.get(f'winner_rank_{i}')
+                user_name = request.form.get(f'winner_username_{i}')
+                if user_id and user_name and rank_value:
+                    winners.append((user_id, user_name, rank_value))
+
+            if winners:
+                try:
+                    # Assuming you have a database connection named `connection`
+                    cursor = connection.cursor()
+                    for winner in winners:
+                        user_id, user_name, rank_value = winner
+                        cursor.execute("INSERT INTO winners (user_id, user_name, rank_value, event_name, event_key) VALUES (%s, %s, %s, %s, %s)", (user_id, user_name, rank_value, event_name, event_key))
+                    connection.commit()
+                    cursor.close()
+                    return "Winners' rankings updated successfully."
+                except Exception as e:
+                    # Handle database errors
+                    return f"An error occurred: {str(e)}"
+            else:
+                return "No winners selected."
+        else:
+            return "Please provide an event key."
+    else:
+        return "Invalid request method."
 
 @app.route('/teacher')
 def teacher_page():
