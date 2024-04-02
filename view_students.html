@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Students</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>View Students</h2>
+    <form action="{{ url_for('view_students') }}" method="post">
+        <label for="event_key">Enter Event Key:</label>
+        <input type="text" id="event_key" name="event_key" required>
+        <br>
+        <label for="event_name">Enter Event Name:</label>
+        <input type="text" id="event_name" name="event_name" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if students %}
+    <h3>Students' Artworks:</h3>
+    <form action="{{ url_for('submit_winners') }}" method="post">
+        <input type="text" id="event_key" name="event_key" required>
+        <input type="text" id="event_name" name="event_name" required>
+        <table>
+            <tr>
+                <th>Select</th>
+                <th>Student ID</th>
+                <th>Filename</th>
+                <th>Description</th>
+                <th>Event ID</th>
+                <th>Event Key</th>
+                <th>User ID</th>
+                <th>Username</th>
+            </tr>
+            {% for student in students %}
+                <tr>
+                    <td><input type="checkbox" name="selected_students_{{ student.student_id }}" value="{{ student.student_id }}"></td>
+                    <td>{{ student.student_id }}</td>
+                    <td><a href="/uploads/{{ student.event_name }}/{{ student.filename }}">{{ student.filename }}</a></td>
+                    <td>{{ student.description }}</td>
+                    <td>{{ student.event_id }}</td>
+                    <td>{{ student.event_key }}</td>
+                    <td>{{ student.user_id }}</td>
+                    <td>{{ student.username }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="hidden" name="event_key" value="{{ event_key }}">
+        <h3>Top 3 Winners:</h3>
+        <table>
+            <tr>
+                <th>Rank</th>
+                <th>Student ID</th>
+                <th>Username</th>
+            </tr>
+            <tr>
+                <td><input type="number" name="winner_rank_1" min="1" max="3"></td>
+                <td><input type="text" name="winner_id_1"></td>
+                <td><input type="text" name="winner_username_1"></td>
+            </tr>
+            <tr>
+                <td><input type="number" name="winner_rank_2" min="1" max="3"></td>
+                <td><input type="text" name="winner_id_2"></td>
+                <td><input type="text" name="winner_username_2"></td>
+            </tr>
+            <tr>
+                <td><input type="number" name="winner_rank_3" min="1" max="3"></td>
+                <td><input type="text" name="winner_id_3"></td>
+                <td><input type="text" name="winner_username_3"></td>
+            </tr>
+        </table>
+        <button type="submit">Submit Winners</button>
+    </form>
+    {% endif %}
+</body>
+</html>
