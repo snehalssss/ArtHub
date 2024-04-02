@@ -318,6 +318,46 @@ def view_applied_students():
     
     return render_template('enter_event_key.html')
 
+@app.route('/view_students', methods=['GET', 'POST'])
+def view_students():
+    if request.method == 'POST':
+        # Process the form submission to display students
+        event_key = request.form['event_key']
+
+        # Fetch students' artworks based on the event_key
+        cursor.execute("SELECT * FROM artworks WHERE event_key = %s", (event_key,))
+        students_data = cursor.fetchall()
+
+        students = []
+        for student_row in students_data:
+            student = {
+                'student_id': student_row[0],
+                'filename': student_row[1],
+                'description': student_row[2],
+                'event_id': student_row[3],
+                'event_key': student_row[4],
+                'user_id': student_row[5],
+                'username': student_row[6]
+            }
+            students.append(student)
+
+        return render_template('view_students.html', students=students)
+    else:
+        return render_template('view_students.html', students=[])
+
+@app.route('/view_artwork/<event_name>/<filename>')
+def view_artwork(event_name, filename):
+    # Construct the path to the artwork file
+    artwork_path = os.path.join(app.config['UPLOAD_FOLDER'], event_name, filename)
+    
+    # Check if the file exists
+    if os.path.exists(artwork_path):
+        # Serve the file from the event subfolder
+        return send_from_directory(os.path.join(app.config['UPLOAD_FOLDER'], event_name, filename))
+    else:
+        # If the file does not exist, return a 404 error
+        abort(404)
+
 @app.route('/teacher')
 def teacher_page():
     return render_template('teacher_page.html')
