@@ -39,7 +39,7 @@
         <table>
             <tr>
                 <th>Select</th>
-                <th>Student ID</th>
+               
                 <th>Filename</th>
                 <th>Description</th>
                 <th>Event ID</th>
@@ -50,7 +50,7 @@
             {% for student in students %}
                 <tr>
                     <td><input type="checkbox" name="selected_students_{{ student.student_id }}" value="{{ student.student_id }}"></td>
-                    <td>{{ student.student_id }}</td>
+                   
                     <td><a href="/uploads/{{ student.event_name }}/{{ student.filename }}">{{ student.filename }}</a></td>
                     <td>{{ student.description }}</td>
                     <td>{{ student.event_id }}</td>
