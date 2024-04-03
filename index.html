@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Show Booking System</title>
+    <style>
+        /* CSS styles... */
+    </style>
+</head>
+<body>
+    <h1>Art Show Booking System</h1>
+
+    <div id="create_show_form">
+        <h2>Create Art Show</h2>
+        <form id="create_show_form">
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title"><br>
+            <label for="date">Date:</label><br>
+            <input type="date" id="date" name="date"><br>
+            <label for="venue">Venue:</label><br>
+            <input type="text" id="venue" name="venue"><br>
+            <label for="tickets_available">Tickets Available:</label><br>
+            <input type="number" id="tickets_available" name="tickets_available"><br>
+            <button type="button" onclick="createShow()">Create Show</button>
+        </form>
+    </div>
+
+    <div id="book_tickets_form">
+        <h2>Book Tickets</h2>
+        <form id="book_tickets_form">
+            <label for="show_id">Show ID:</label><br>
+            <input type="number" id="show_id" name="show_id"><br>
+            <label for="user_name">Your Name:</label><br>
+            <input type="text" id="user_name" name="user_name"><br>
+            <label for="tickets_booked">Tickets Booked:</label><br>
+            <input type="number" id="tickets_booked" name="tickets_booked"><br>
+            <button type="button" onclick="bookTickets()">Book Tickets</button>
+        </form>
+    </div>
+
+    <div id="shows_list">
+        <h2>Art Shows</h2>
+        <ul id="shows"></ul>
+    </div>
+
+    <div id="bookings_list">
+        <h2>Bookings</h2>
+        <ul id="bookings"></ul>
+    </div>
+
+    <script>
+        function createShow() {
+            const formData = {
+                title: document.getElementById('title').value,
+                date: document.getElementById('date').value,
+                venue: document.getElementById('venue').value,
+                tickets_available: document.getElementById('tickets_available').value
+            };
+
+            fetch('/create_show', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.message);
+                // Optionally, you can update the frontend to reflect the newly created show
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+        }
+
+        function bookTickets() {
+            const formData = {
+                show_id: document.getElementById('show_id').value,
+                user_name: document.getElementById('user_name').value,
+                tickets_booked: document.getElementById('tickets_booked').value
+            };
+
+            fetch('/book_tickets', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.message);
+                // Optionally, you can update the frontend to reflect the successful booking
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+        }
+    </script>
+</body>
+</html>
