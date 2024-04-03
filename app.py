@@ -392,6 +392,7 @@ def submit_winners():
             return "Please provide an event key."
     else:
         return "Invalid request method."
+       
 
 @app.route('/show_winners', methods=['GET', 'POST'])
 def show_winners():
