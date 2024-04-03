@@ -7,137 +7,135 @@
     <title>Login</title>
     
     <style>
-    @import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i');
-  
-        html{
-          margin-top: 0;
-          padding:0;
-          font-family: 'Lato', sans-serif;
-        }
-        img{
-           height: 10vh;
-           width: 10vh;
-           
-           float: left;
-           margin-left: 3px;
-        }
-        nav {
-           margin-top: 0;
-           padding: 0.5px;
-           background-size: cover;
-           background-color: white;
-           height: 6vh;
-           width: 100%;
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 10px;
-            margin-top: 30px;
-            font-size: 20px;
-            
-            color: #3a9fff;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+
         body {
-            
             margin: 0;
             padding: 0;
-            background-image: url('/static/folder-surrounded-by-painting-material.jpg');
-            
-  /* Set the background color with reduced opacity */
-            background-color: rgba(255, 255, 255, 2.5);
-            background-size: cover;
-         
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        nav {
+            background-color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav img {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            border: 2px solid #3a9fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         form {
-            
-            padding: 0;
-            border-radius: 8px;
-            margin-top: 140px;
-            width: 300px;
-            margin-left: 470px;
-            text-align: center;
-          
-            align-items: center;
-            justify-content: center;
+            background-color: #fff;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
         }
-       
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #3a9fff;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
         label {
             display: block;
             margin-bottom: 8px;
+            color: #333;
+            font-weight: 700;
         }
-        div {
-            color:rgb(16, 44, 44);
-        }
+
         input {
-            text-align: center;
-            width: 80%;
-            padding: 8px;
-            
-            margin: 10px auto;
-            display: inline-block;
-            border: 1px solid #ccc;
+            width: calc(100% - 24px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #ccc;
+            border-radius: 20px;
             box-sizing: border-box;
-            border-radius: 15px;
+            transition: border-color 0.3s;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        input:focus {
+            border-color: #3a9fff;
+            outline: none;
         }
 
         button {
             background-color: #3a9fff;
             color: white;
-            padding: 8px 40px;
-            text-align: center;
-            width: 200px;
+            padding: 14px 20px;
             border: none;
-            border-radius: 15px;
+            border-radius: 20px;
             cursor: pointer;
-            margin-bottom: 7px;
-            margin-top: 20px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s;
         }
 
         button:hover {
-            background-color: white;
-            color: #3a9fff;
+            background-color: #1e6cd8;
         }
 
-        p {
-            color: red;
+        .links {
+            text-align: center;
+            margin-top: 30px;
         }
 
-        a {
-            display: block;
-            margin-top: 10px;
-            font-size: 12px;
-            
-            color: #1f4568;
+        .links a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
             text-decoration: none;
+            color: #fff;
+            background-color: #3a9fff;
+            border-radius: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s;
         }
-        
+
+        .links a:hover {
+            background-color: #1e6cd8;
+        }
     </style>
 </head>
        
 <body>
-     <nav>
-         <img src = "/static/cropped-Screenshot from 2024-03-02 14-38-15.png">
-         
-     </nav>
-     <form method="post" action="{{ url_for('login') }}">
-        
-        <h2>USER LOGIN</h2>
-        {% if error %}
-            <p>{{ error }}</p>
-        {% endif %}
+    <nav>
+        <img src="/static/cropped-Screenshot from 2024-03-02 14-38-15.png" alt="Logo">
+    </nav>
+
+    <form method="post" action="{{ url_for('login') }}">
+        <h2>Sign In</h2>
         <label for="username_or_email">Username or Email:</label>
-        <input type="text" id="username_or_email" name="username_or_email" required>
+        <input type="text" id="username_or_email" name="username_or_email" placeholder="Enter your username or email" required>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
-        <button type="submit">LOGIN</button>
-        <div>
-        <a href="/register"><style color = green></style> New User? Register Here</a>
-        <a href="/register">Forgot Password</a>
+        <button type="submit">Sign In</button>
+
+        <div class="links">
+            <a href="/register">New User? Register Here</a>
+            <a href="/forgot-password">Forgot Password?</a>
         </div>
     </form>
 </body>
 </html>
-
