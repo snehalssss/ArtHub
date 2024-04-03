@@ -10,7 +10,9 @@
             margin: 0;
             padding: 0;
             font-family: 'Lato', sans-serif;
-            color: #8e74e7; /* Light purple color */
+            color: #1f4568; /* Dark purple color */
+            background-color: #e6e6fa; /* Light purple background color */
+            border: 5px solid #1f4568; /* Border color */
         }
 
         /* Custom Fonts */
@@ -85,8 +87,9 @@
             background-color: #3a9fff;
         }
     </style>
+
 </head>
-<body style="background-image: url('https://www.shutterstock.com/s/illustration/light-second?page=6&image_type=illustration&sa=i&nkw=light+second'); background-color: #e6e6fa;"> <!-- Light purple background color -->
+<body>
     <form action="{{ url_for('view_students') }}" method="post">
         <h2>View Students</h2>
         <label for="event_key">Enter Event Key:</label>
@@ -153,12 +156,5 @@
         <button type="submit">Submit Winners</button>
     </form>
     {% endif %}
-          <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.body.style.backgroundImage = 'url("file:///C:/Users/Admin/Desktop/CN1/ArtHub-anushka/blue.jpg")';
-            document.body.style.backgroundRepeat = 'no-repeat';
-            document.body.style.backgroundSize = 'cover';
-        });
-    </script>
 </body>
 </html>
