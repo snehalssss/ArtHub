@@ -393,6 +393,22 @@ def submit_winners():
     else:
         return "Invalid request method."
 
+@app.route('/show_winners', methods=['GET', 'POST'])
+def show_winners():
+    if request.method == 'POST':
+        event_key = request.form.get('event_key')
+        if event_key:
+            cursor.execute("SELECT user_name, rank_value FROM winners WHERE event_key = %s", (event_key,))
+            winners_data = cursor.fetchall()
+            winners = [{'user_name': row[0], 'rank_value': row[1]} for row in winners_data]
+            return render_template('show_winners.html', event_key=event_key, winners=winners)
+        else:
+            # Handle case where event key is not provided
+            return "Please provide an event key."
+    else:
+        # Handle case where method is not POST
+        return render_template('show_winners.html')  # Display the form for entering event key
+
 @app.route('/teacher')
 def teacher_page():
     return render_template('teacher_page.html')
