@@ -10,18 +10,12 @@
             margin: 0;
             padding: 0;
             font-family: 'Lato', sans-serif;
-            color: #fff;
+            color: #8e74e7; /* Light purple color */
         }
 
         /* Custom Fonts */
         @import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i');
         @import url('https://fonts.googleapis.com/css?family=Arvo');
-
-        /* Background Image */
-        body {
-            background-image: url('C:\\Users\\Admin\\Desktop\\CN1\\ArtHub-anushka\\blue.jpg');
-            background-size: cover;
-        }
 
         /* Form Styling */
         form {
@@ -37,9 +31,7 @@
         label {
             font-weight: bold;
             display: block;
-            margin-bottom: 8px;
-            color: #3a9fff; /* Adjusted label color */
-            font-size: 16px; /* Adjusted font size */
+            margin-bottom: 20px; /* Increased margin-bottom */
         }
         input[type="text"], input[type="password"], input[type="number"] {
             text-align: center;
@@ -94,7 +86,7 @@
         }
     </style>
 </head>
-<body>
+<body style="background-image: url('https://www.shutterstock.com/s/illustration/light-second?page=6&image_type=illustration&sa=i&nkw=light+second'); background-color: #e6e6fa;"> <!-- Light purple background color -->
     <form action="{{ url_for('view_students') }}" method="post">
         <h2>View Students</h2>
         <label for="event_key">Enter Event Key:</label>
