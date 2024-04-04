@@ -85,7 +85,18 @@
     <div id="header">
         <h1 style="color: #fff;">ARTSHOWS</h1>
     </div>
-    <div id="artShowsContainer"></div>
+    <div id="artShowsContainer">
+        {% for art_show in art_shows %}
+        <div class="artShow">
+            <img src="{{ url_for('static', filename=art_show.image) }}" alt="{{ art_show.title }}">
+            <div class="details">
+                <h2>{{ art_show.title }}</h2>
+                <p>{{ art_show.description }}</p>
+                <a href="/show_details/{{ art_show.id }}">Book</a> <!-- Change 'show.id' to 'art_show.id' -->
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
