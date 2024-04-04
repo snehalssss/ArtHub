@@ -2,7 +2,7 @@ from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
 
-# Sample art shows data
+# Sample art art_shows data
 art_shows = [
     {
         'title': 'ART EXHIBITION',
@@ -13,6 +13,36 @@ art_shows = [
         'title': 'THE ART FAIR',
         'description': 'It is the subcontinent\'s most-awaited fair... a treat for collectors and connoisseurs.',
         'image': 'images.jpeg'
+    },
+    {
+        'title': 'DIGITAL ART ',
+        'description': 'A visual object experience consciously created through an expression of skill or imagination. ',
+        'image': '367.jpeg'
+    },
+    {
+        'title': 'INDIA ART_art_show',
+        'description': 'A visual object experience consciously created through an expression of skill or imagination. ',
+        'image': 'india_art.jpeg'
+    },
+    {
+        'title': 'ART art_show - MOUNT VIEW',
+        'description': 'A visual object experience consciously created through an expression of skill or imagination. ',
+        'image': 'images.png'
+    },
+    {
+        'title': 'ART EXHIBITION',
+        'description': 'A visual object experience consciously created through an expression of skill or imagination. ',
+        'image': '820928489dd2f_377490.png_detail.jpg'
+    },
+    {
+        'title': 'LA ART art_show',
+        'description': 'A visual object experience consciously created through an expression of skill or imagination. ',
+        'image': 'LOGO.jpg'
+    },
+    {
+        'title': 'CREATIVEHIVE',
+        'description': 'A visual object experience consciously created through an expression of skill or imagination. ',
+        'image': 'creativehive.png'
     }
 ]
 
