@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Details</title>
+</head>
+<body>
+    <div>
+        <h1>{{ show_details.title }}</h1>
+        <img src="{{ url_for('static', filename=show_details.image) }}" alt="{{ show_details.title }}">
+        <p>{{ show_details.description }}</p>
+        <a href="/select_description/{{ show_details.id }}"><button>Select Description</button></a>
+        <a href="/book_seat/{{ show_details.id }}"><button>Book Seat</button></a>
+    </div>
+</body>
+</html>
