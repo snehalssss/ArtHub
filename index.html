@@ -6,25 +6,85 @@
     <title>Art Shows</title>
     <style>
         /* Add your CSS styles here */
-        .artShow {
+        body {
+            background-color: #f0f0f0; /* Set background color */
+            font-family: Arial, sans-serif; /* Set font family */
+            color: #333; /* Set text color */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+
+        #header {
+            background-color: #86d8fb; /* Set header background color */
+            padding: 20px; /* Add padding */
+            text-align: center; /* Center align text */
+        }
+
+        #artShowsContainer {
             display: flex;
-            margin-bottom: 50px;
-            border: 10px solid #ccc;
-            padding: 10px;
+            flex-wrap: wrap; /* Wrap items to next line */
+            justify-content: center; /* Center align items */
+            padding: 20px; /* Add padding */
+        }
+
+        .artShow {
+            margin: 20px; /* Add margin */
+            padding: 20px; /* Add padding */
+            border-radius: 10px; /* Add border radius */
+            background-color: #b6cbf8; /* Set background color */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow */
+            max-width: 300px; /* Set max width */
+            position: relative; /* Set position to relative */
         }
 
         .artShow img {
-            width: 500px; /* Adjust the width of the image */
-            height: auto;
-            margin-right: 80px; /* Add some space between image and description */
+            width: 100%; /* Set image width to 100% of container */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 5px; /* Add border radius */
+            margin-bottom: 10px; /* Add margin */
         }
 
         .artShow .details {
-            flex: 1; /* Take remaining space */
+            position: absolute; /* Set position to absolute */
+            bottom: 0; /* Align to bottom */
+            left: 0; /* Align to left */
+            right: 0; /* Align to right */
+            padding: 10px; /* Add padding */
+            background-color: rgba(255, 255, 255, 0.8); /* Set background color with transparency */
+            border-bottom-left-radius: 10px; /* Add border radius to bottom left */
+            border-bottom-right-radius: 10px; /* Add border radius to bottom right */
+        }
+
+        .artShow .details h2 {
+            font-size: 20px; /* Set font size */
+            font-weight: bold; /* Set font weight to bold */
+            margin-top: 0; /* Remove top margin */
+            margin-bottom: 5px; /* Add bottom margin */
+        }
+
+        .artShow .details p {
+            font-size: 16px; /* Set font size */
+            margin-bottom: 0; /* Remove bottom margin */
+        }
+
+        .bookButton {
+            background-color: #86d8fb; /* Set button background color */
+            color: #fff; /* Set button text color */
+            padding: 10px 20px; /* Add padding */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Add border radius */
+            cursor: pointer; /* Set cursor to pointer */
+        }
+
+        .bookButton:hover {
+            background-color: #45a049; /* Darken button color on hover */
         }
     </style>
 </head>
 <body>
+    <div id="header">
+        <h1 style="color: #fff;">ARTSHOWS</h1>
+    </div>
     <div id="artShowsContainer"></div>
 
     <script>
@@ -37,10 +97,15 @@
                         const artShowElement = document.createElement('div');
                         artShowElement.classList.add('artShow');
 
+                        const imageContainer = document.createElement('div');
+                        imageContainer.classList.add('imageContainer');
+
                         const imageElement = document.createElement('img');
                         imageElement.src = "static/" + artShow.image;
                         imageElement.alt = artShow.title;
-                        artShowElement.appendChild(imageElement);
+                        imageContainer.appendChild(imageElement);
+
+                        artShowElement.appendChild(imageContainer);
 
                         const detailsElement = document.createElement('div');
                         detailsElement.classList.add('details');
@@ -52,6 +117,14 @@
                         const descriptionElement = document.createElement('p');
                         descriptionElement.textContent = artShow.description;
                         detailsElement.appendChild(descriptionElement);
+
+                        const bookButton = document.createElement('button');
+                        bookButton.classList.add('bookButton');
+                        bookButton.textContent = 'Book';
+                        bookButton.onclick = function() {
+                            window.location.href = '/book_seat/' + artShow.id;
+                        };
+                        detailsElement.appendChild(bookButton);
 
                         artShowElement.appendChild(detailsElement);
 
