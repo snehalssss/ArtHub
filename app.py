@@ -211,6 +211,23 @@ def login():
 
     return render_template('login.html')
 
+@app.route('/logout')
+def logout():
+    # Remove user credentials from session
+    username_or_email = session.pop('username_or_email', None)
+    user_type = session.pop('user_type', None)
+
+    # Delete user record from the database
+    if username_or_email:
+        cursor.execute("DELETE FROM artworks WHERE user_id IN (SELECT id FROM users WHERE username = %s OR email = %s)", (username_or_email, username_or_email))
+        cursor.execute("DELETE FROM winners WHERE user_id IN (SELECT id FROM users WHERE username = %s OR email = %s)", (username_or_email, username_or_email))
+        cursor.execute("DELETE FROM users WHERE username = %s OR email = %s", (username_or_email, username_or_email))
+        
+        connection.commit()
+
+    # Redirect to the login page after logout
+    return redirect(url_for('login'))
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
