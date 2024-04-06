@@ -191,7 +191,7 @@ def success():
 
 @app.route('/')
 def index():
-    return render_template('login.html')
+    return render_template('home_page.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
