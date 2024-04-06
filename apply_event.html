@@ -9,9 +9,15 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #e6e6fa; /* Light purple background color */
             text-align: center;
+        }
+
+        /* Heading Styling */
+        h1 {
+            color: #1f4568; /* Dark purple color */
+            margin-top: 20px; /* Add some space above the heading */
         }
 
         /* Table Styling */
@@ -19,17 +25,22 @@
             width: 80%;
             margin: 20px auto;
             border-collapse: collapse;
-            border: 2px solid #1f4568;
+            border-radius: 15px; /* Rounded edges */
+            overflow: hidden; /* Ensure rounded corners are visible */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a card-like effect */
         }
 
         th, td {
             border: 1px solid #1f4568;
             padding: 8px;
+            text-align: center;
+            color: #333; /* Dark text color */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Apply font family */
         }
 
         th {
             background-color: #1f4568;
-            color: #fff;
+            color: #fff; /* White text color for header */
         }
 
         /* Link Styling */
