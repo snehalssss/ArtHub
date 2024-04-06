@@ -1110,33 +1110,92 @@
    
   
   }
+        .header__profile {
+    position: relative;
+}
+
+/* Style the dropdown button */
+.dropbtn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
+    
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: auto; /* Move the dropdown to the right side */
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+    padding: 8px 0;
+    margin-top: 5px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
     </style>
   </head>
   
   <body>
   <header class="header">
-    <div class="container header__container">
-  <div class="header__logo"><img class="header__img" src="https://image.ibb.co/kcVou6/path3000.png"> <h1 class="header__title">Art<span class="header__light">hub</span></h1></div> 
-       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-    
-    <div class="header__menu">
-      <nav id="navbar" class="header__nav collapse">
-        <ul class="header__elenco">
-          <li class="header__el"><a href="#home" class="header__link">Home</a></li>
-          <li class="header__el"><a href="#events" class="header__link">Events</a></li>
-          <li class="header__el"><a href="#gallery" class="header__link"> Gallery</a></li>
-          <li class="header__el"><a href="#query" class="header__link">Query</a></li>
-          <li class="header__el"><a href="#about" class="header__link">About Us</a></li>
-          <li class="header__el"><a href="#contact" class="header__link">Contact us</a></li>
-          <li class="header__el header__el--blue"><a href="http://127.0.0.1:5000/" class="btn btn--white">Sign In →</a></li>
-        </ul>
-      </nav>
-    </div>
+      <div class="container header__container">
+          <div class="header__logo">
+              <img class="header__img" src="https://image.ibb.co/kcVou6/path3000.png">
+              <h1 class="header__title">Art<span class="header__light">hub</span></h1>
+          </div>
+          <div class="header__menu">
+              <nav id="navbar" class="header__nav collapse">
+                  <ul class="header__elenco">
+                      <li class="header__el"><a href="#home" class="header__link">Home</a></li>
+                      <li class="header__el"><a href="#events" class="header__link">Events</a></li>
+                      <li class="header__el"><a href="#gallery" class="header__link">Gallery</a></li>
+                      <li class="header__el"><a href="#explore" class="header__link">Explore</a></li>
+                      <li class="header__el"><a href="#query" class="header__link">Query</a></li>
+                      <li class="header__el"><a href="#about" class="header__link">About Us</a></li>
+                      <li class="header__el"><a href="#contact" class="header__link">Contact us</a></li>
+                      <li class="header__el"><div class="dropdown">
+                        <button class="dropbtn">{{ username_or_email[0] | upper }}</button>
+                        <div class="dropdown-content">
+                            <a href="#">{{ username_or_email }}</a>
+                            <a href="#">{{user_type}}</a>
+                            <a href="{{ url_for('logout') }}">Logout</a>
+                        </div>
+                    </div></li>
+                  </ul>
+              </nav>
+          </div>
+          
       </div>
   </header>
   <section id = "home">
