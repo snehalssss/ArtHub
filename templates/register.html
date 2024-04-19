@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        html{
+          margin-top: 0;
+          padding:0;
+        }
+        img{
+           height: 10vh;
+           width: 10vh;
+           
+           float: left;
+           margin-left: 3px;
+        }
+        nav {
+           margin-top: 0;
+           padding: 0.5px;
+           background-size: cover;
+           background-color: white;
+           height: 6vh;
+           width: 100%;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 0;
+            margin-top: 90px;
+            font-size: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #29ADB2;
+        }
+        body {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/static/folder-surrounded-by-painting-material.jpg');
+            
+  /* Set the background color with reduced opacity */
+            background-color: rgba(255, 255, 255, 2.5);
+            background-size: cover;
+         
+        }
+
+        form {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 0;
+            border-radius: 8px;
+            margin-top: 140px;
+            width: 300px;
+            margin-left: 470px;
+            text-align: center;
+          
+            align-items: center;
+            justify-content: center;
+        }
+       
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        div {
+            color:rgb(16, 44, 44);
+        }
+        input {
+            text-align: center;
+            width: 80%;
+            padding: 6px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 10px auto;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 12px;
+        }
+
+        button {
+            background-color: #149ea3;
+            color: white;
+            padding: 8px 30px;
+            text-align: center;
+            width: 100px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-bottom: 8px;
+            margin-top: 25px;
+        }
+
+        button:hover {
+            background-color: white;
+            color: #179698;
+        }
+
+        p {
+            color: red;
+        }
+
+        a {
+            display: block;
+            margin-top: 10px;
+            font-size: 12px;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #096974;
+            text-decoration: none;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <form action="/register" method="post">
+        <h2>Register</h2>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="user_type">User Type:</label>
+        <select id="user_type" name="user_type" required>
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+        </select>
+
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>
+

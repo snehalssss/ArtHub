@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Event</title>
+</head>
+<body>
+    <h1>Available Events</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Event Type</th>
+                <th>Event Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Event Description</th>
+                <th>Apply</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event.event_name }}</td>
+                <td>{{ event.event_type }}</td>
+                <td>{{ event.event_date }}</td>
+                <td>{{ event.start_time }}</td>
+                <td>{{ event.end_time }}</td>
+                <td>{{ event.event_description }}</td>
+                <td><a href="/apply/{{ event.id }}">Apply</a></td> <!-- Link to apply for the event -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

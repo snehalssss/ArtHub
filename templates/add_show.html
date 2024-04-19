@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD Event</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f5f9;
+            background-image: url('/static/background_book.jpg');
+            margin: 0;
+            padding: 0;
+        }
+        
+        #header {
+            background-color: #9C9EFE;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        #addEventStrip {
+            background-color: #2196f3;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        #addEventStrip span {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+        
+        form {
+            width: 50%;
+            margin: 0 auto;
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        input[type="text"],
+        input[type="time"],
+        input[type="date"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        input[type="submit"] {
+            background-color: #2196f3;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #0b7dda;
+        }
+
+        /* Center the confirmation message */
+        .confirmation-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .booking-confirmation {
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>Add Event</h1>
+    </div>
+    
+    <form action="/add_show" method="POST" enctype="multipart/form-data">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" required><br>
+
+        <label for="start_time">Start Time:</label><br>
+        <input type="time" id="start_time" name="start_time" required><br>
+
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location" required><br>
+
+        <label for="event_date">Event Date:</label><br>
+        <input type="date" id="event_date" name="event_date" required><br>
+
+        <label for="available_seats">Available Seats:</label><br>
+        <input type="number" id="available_seats" name="available_seats" required><br>
+
+        <label for="pamphlet">Pamphlet:</label>
+        <input type="file" id="pamphlet" name="pamphlet" accept="image/*"><br><br> <!-- This is the new input field for the image -->
+
+
+        <input type="submit" value="Submit">
+    </form>
+    {% if event_confirmed %}
+    <div class="confirmation-container">
+        <div class="booking-confirmation">
+            <label>Event Confirmed! Thank you for your interest.</label>
+        </div>
+    </div>
+    {% endif %}
+    <script>
+        
+    </script>
+</body>
+</html>

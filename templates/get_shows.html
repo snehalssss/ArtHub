@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shows</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .show {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .show h2 {
+            margin-top: 0;
+        }
+
+        .show p {
+            margin-bottom: 5px;
+        }
+
+        .show .button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .show .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upcoming Shows</h1>
+        <div id="showsList"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchShows();
+        });
+
+        function fetchShows() {
+            fetch('/get_shows')
+            .then(response => response.json())
+            .then(data => {
+                displayShows(data.shows);
+            })
+            .catch(error => console.log(error));
+        }
+
+        function displayShows(shows) {
+            const showsList = document.getElementById('showsList');
+
+            shows.forEach(show => {
+                const showDiv = document.createElement('div');
+                showDiv.classList.add('show');
+
+                const title = document.createElement('h2');
+                title.textContent = show.title;
+
+                const date = document.createElement('p');
+                date.textContent = 'Date: ' + show.date;
+
+                const venue = document.createElement('p');
+                venue.textContent = 'Venue: ' + show.venue;
+
+                const button = document.createElement('button');
+                button.classList.add('button');
+                button.textContent = 'Book Tickets';
+
+                showDiv.appendChild(title);
+                showDiv.appendChild(date);
+                showDiv.appendChild(venue);
+                showDiv.appendChild(button);
+
+                showsList.appendChild(showDiv);
+            });
+        }
+    </script>
+</body>
+</html>

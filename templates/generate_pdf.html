@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate PDF</title>
+    <style>
+        /* CSS styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('/static/background_book.jpg');
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Cover entire viewport height */
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        #download-pdf-button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #download-pdf-button:hover {
+            background-color: #0056b3;
+        }
+        .header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 36px;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ARTHUB</h1>
+    </div>
+    <div class="container" id="pdf-content">
+        <h1>Booking Confirmation</h1>
+        <p><strong>Show ID:</strong> {{ show_id }}</p>
+        <p><strong>Name:</strong> {{ customer_name }}</p>
+        <p><strong>Event:</strong> {{ title }}</p>
+        <p><strong>Start Time:</strong> {{ start_time }}</p>
+        <p><strong>Location:</strong> {{ location }}</p>
+        <p><strong>Event Date:</strong> {{ event_date }}</p>
+    </div>
+    <button id="download-pdf-button">Download PDF</button>
+
+    <script src="/static/html2pdf.bundle.min.js"></script>
+    <script>
+        // JavaScript code
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listener to the download button
+            document.querySelector('#download-pdf-button').addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default behavior of the button click
+
+                // Convert HTML content to PDF
+                var element = document.getElementById('pdf-content');
+                html2pdf(element, {
+                    margin: 1,
+                    filename: 'e-receipt.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

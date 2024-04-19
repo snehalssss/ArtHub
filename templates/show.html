@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Shows</title>
+</head>
+
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ART SHOWS</title> -->
+    
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #header {
+            background-color: #3a9fff;
+            background-image: url('/static/background_booking.jpg');
+            padding: 20px;
+            text-align: center;
+        }
+        #artShowsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .artShow {
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #95bedd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            text-align: center;
+        }
+        .artShow img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .artShow .details {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .bookButton {
+            background-color: #92caef;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .bookButton:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>ARTSHOWS</h1>
+    </div>
+    
+    <div id="artShowsContainer">
+        {% for show in shows %}
+        <div class="artShow">
+            <img src="/static/uploads/{{ show.pamphlet }}" alt="{{ show.title }}">
+            <div class="details">
+                <h2>{{ show.title }}</h2>
+                <p>{{ show.description }}</p>
+                <!-- <a href="/book/{{ show.id }}" target="_blank" class="bookButton">Book</a> -->
+                <a href="{{ url_for('book_show', show_id=show.id) }}" class="bookButton" style="text-decoration: none;">Book</a>
+                <a href="/static/uploads/{{ show.pamphlet }}" class="bookButton" style="text-decoration: none;">View Details</a>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+</head>
+<body>
+    <!-- <div id="header">
+        <h1 style="color: #fff;">ARTSHOWS</h1>
+    </div> -->
+    <div id="artShowsContainer">
+        <!-- Art shows will be added dynamically here -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/show_details')
+                .then(response => response.json())
+                .then(data => {
+                    const artShowsContainer = document.getElementById('artShowsContainer');
+                    data.shows.forEach(artShow => {
+                        const artShowElement = document.createElement('div');
+                        artShowElement.classList.add('artShow');
+
+                        const imageContainer = document.createElement('div');
+                        imageContainer.classList.add('imageContainer');
+
+                        const imageElement = document.createElement('img');
+                        imageElement.src = "static/" + artShow.image;
+                        imageElement.alt = artShow.title;
+                        imageContainer.appendChild(imageElement);
+
+                        artShowElement.appendChild(imageContainer);
+
+                        const detailsElement = document.createElement('div');
+                        detailsElement.classList.add('details');
+
+                        const titleElement = document.createElement('h2');
+                        titleElement.textContent = artShow.title;
+                        detailsElement.appendChild(titleElement);
+
+                        const descriptionElement = document.createElement('p');
+                        descriptionElement.textContent = artShow.description;
+                        detailsElement.appendChild(descriptionElement);
+
+                        const bookButtons = document.querySelectorAll('.bookButton');
+                        bookButtons.forEach(button => {
+                        button.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        const showId = button.getAttribute('href').split('/').pop();
+                        window.location.href = '/show_details/' + showId;
+                    });
+                });
+            
+                        detailsElement.appendChild(bookButton);
+
+                        artShowElement.appendChild(detailsElement);
+
+                        artShowsContainer.appendChild(artShowElement);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching art shows:', error);
+                });
+        });
+    </script>
+</body>
+</html>

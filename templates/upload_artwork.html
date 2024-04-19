@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Artwork</title>
+    <style>
+    body {
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('/static/unique-watercolor-art-paper-texture.jpg'); /* Replace 'your-image.jpg' with your image file path */
+    background-size: cover; /* Scale the background image to cover the entire container */
+    /*background-position: center; /* Center the background image within the container */
+    background-repeat: no-repeat;
+    
+}
+
+h2 {
+    margin-top: 4%;
+    text-align: center;
+}
+
+form {
+   
+    justify-content: center;
+    
+    
+    margin-left: 25%;
+}
+
+input[type="text"],
+input[type="file"],
+textarea {
+    justify-content: center;
+    width: 30%;
+    margin-left: 5%;
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+button {
+    width: 20%;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 25%;
+    margin-top: 7%;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+.header__img{
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .header__logo, .header__menu{
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .header__title{
+    font-size: 18px;
+    margin: 0;
+    margin-left: 10px;
+    display: inline-block;
+    line-height: 18px;
+    vertical-align: middle;
+  }
+  
+  .header__light{
+    color: #8198ae;
+  }
+
+    </style>
+</head>
+<body>
+    <div class="header__logo"><img class="header__img" src="https://image.ibb.co/kcVou6/path3000.png"> <h1 class="header__title">Art<span class="header__light">hub</span></h1></div> 
+       
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+    <h2>Upload Artwork</h2>
+    <form id="eventForm">
+        <label for="eventName">Enter Event Name:</label>
+        <input type="text" id="eventName" name="eventName">
+        <button type="button" onclick="fetchAndDisplayEventKey()">Get Event Key</button>
+    </form>
+    <br>
+    <!-- Display area for event key -->
+    <div id="eventKeyDisplay"></div>
+    <br><br>
+     <form method="post" enctype="multipart/form-data"><form action="{{ url_for('upload_artwork') }}" method="post" enctype="multipart/form-data">
+        <input type="text" name="event_name" placeholder="Event Name" required><form action="{{ url_for('upload_artwork') }}" method="post" enctype="multipart/form-data">
+            
+        
+            
+            <label for="artwork">Artwork:</label>
+            <input type="file" name="artwork" id="artwork" accept=".png, .jpg, .jpeg" required>
+            <br>
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" rows="4" required></textarea>
+            <br>
+            <!-- Remove readonly attribute from username field -->
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" value="{{ username }}">
+            <br>
+            <!-- Add event key field -->
+            <label for="event_key">Event Key:</label>
+            <input type="text" name="event_key" id="event_key" value="{{ event_key }}">
+            <br>
+            <!-- End of additional fields -->
+            <button type="submit">Submit Artwork</button>
+        </form>
+        
+        
+    <script>
+        function fetchAndDisplayEventKey() {
+            const eventName = document.getElementById('eventName').value;
+            fetch(`/fetch_event_key?eventName=${eventName}`)
+                .then(response => response.json())
+                .then(data => {
+                    const eventKeyDisplay = document.getElementById('eventKeyDisplay');
+                    if (data.eventKey) {
+                        eventKeyDisplay.textContent = `Event Key: ${data.eventKey}`;
+                    } else {
+                        eventKeyDisplay.textContent = 'Event not found.';
+                    }
+                })
+                .catch(error => console.error('Error fetching event key:', error));
+        }
+    </script>
+</body>
+</html>
